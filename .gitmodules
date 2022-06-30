@@ -7,3 +7,6 @@
 [submodule "lib/solmate"]
 	path = lib/solmate
 	url = https://github.com/Rari-capital/solmate
+[submodule "lib/num_complex_solidity"]
+	path = lib/num_complex_solidity
+	url = https://github.com/partylikeits1983/num_complex_solidity
