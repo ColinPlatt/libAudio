@@ -4,7 +4,14 @@ pragma solidity ^0.8.13;
 import "forge-std/Test.sol";
 import {ASine} from "../src/ASine.sol";
 
+import {Trigonometry} from "solidity-trigonometry/Trigonometry.sol";
+
+
+import {FixedPointMathLib} from "solmate/utils/FixedPointMathLib.sol";
+
 contract ASineTest is Test {
+    using FixedPointMathLib for uint256;
+    using Trigonometry for *;
 
     uint256 constant PI          = 3141592653589793238;
     uint256 constant PRECISION   = 10**18;
@@ -16,20 +23,34 @@ contract ASineTest is Test {
     }
 
     function testOscillator() public {
-       (bytes2 sample, uint256 angle) = sin.SineOscillator(440*PRECISION, 5*10**17, 0);
 
-       emit log_bytes(abi.encodePacked(sample));
-       emit log_uint(angle/PRECISION);
+        //function SineOscillator(uint256 frequency, int8 amplitude, uint8 mid, uint256 iterations) internal pure returns (bytes memory)
+
+       bytes memory WaveData = sin.SineOscillator(uint256(440), int8(5), uint8(127), uint256(10));
+
+       emit log_bytes(WaveData);
     }
+
+    
 
     function testMath() public {
-        uint256 offset = 2*PI * 440 / 44100;
+        uint256 offset = 2*PI * 440 / 20050;
+        
+
+        bytes1 byteSample = sin.Oscillation(int8(1), offset*2, uint8(127));
+
+        //uint256 offset = Trigonometry.TWO_PI * frequency / sampleRate;
+
+        uint256 secondsample = (127*uint256((offset*2).sin())/PRECISION)+127;
+
+        emit log_uint(secondsample);
 
         emit log_uint(offset);
+        emit log_uint(uint8(byteSample));
 
     }
 
-    function _testLoop() public {
+    /*function _testLoop() public {
 
         //uint256 duration = 2;
         uint256 sampleRate = 4410;
@@ -51,6 +72,8 @@ contract ASineTest is Test {
 
         emit log_bytes(rawData);
 
-    }
+
+    }*/
+    
 
 }

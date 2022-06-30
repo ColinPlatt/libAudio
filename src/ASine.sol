@@ -6,16 +6,36 @@ import {Trigonometry} from "solidity-trigonometry/Trigonometry.sol";
 contract ASine {
     using Trigonometry for *;
 
-    uint256 constant sampleRate = 44100 * 10**18;
-    uint256 constant bitDepth = 16;
+    uint256 constant sampleRate = 20050;
 
+    event log_angle(uint256 angle);
 
-    function SineOscillator(uint256 frequency, int256 amplitude, uint256 angle) public pure returns (bytes2, uint256) {
+    function SineOscillator(uint256 frequency, int8 amplitude, uint8 mid, uint256 iterations) public returns (bytes memory) {
         uint256 offset = Trigonometry.TWO_PI * frequency / sampleRate;
+        
+        emit log_angle(offset);
 
-        bytes2 sample = bytes2(abi.encodePacked(int16(amplitude * angle.sin())));
-        angle += offset;
-        return (sample, angle);
+        uint256 angle = 0;
+        bytes memory sineData = new bytes (iterations);
+
+        for(uint256 i = 0; i<iterations; i++) {
+            sineData[i] = Oscillation(amplitude, angle, mid);
+            angle += offset;
+            //emit log_angle(angle);
+        }
+
+        return sineData;
+
+    }
+
+    function Oscillation(int8 _amplitude, uint256 _angle, uint8 _mid) public pure returns (bytes1 sample) {
+        //uint256 secondsample = (127*uint256((offset).sin())/PRECISION)+128;
+        
+        //((_mid*uint256(_amplitude * _angle.sin()))/10**18)+127
+
+        sample = bytes1(uint8(((_mid*uint256(_amplitude * _angle.sin()))/10**18)+127));
+
+        return sample;
     }
 
 /*
