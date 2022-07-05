@@ -79,7 +79,4 @@ contract WavesTest is Test {
         return uint8(uint256(127+int256((joint * amplitude)/1e18)));
     }
 
-    function squaredWave
-
-
 }

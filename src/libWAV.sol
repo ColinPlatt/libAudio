@@ -4,7 +4,7 @@ pragma solidity =0.8.13;
 library WAV_8BIT {
 
     bytes4 constant RIFF_HDR = hex'52_49_46_46'; // RIFF
-    bytes16 constant WAV_FMT_HDR = hex'57_41_56_45_66_6d_74_20_10_00_00_00_01_00_02_00'; // WAVE_fmt _ and constant from header  
+    bytes16 constant WAV_FMT_HDR = hex'57_41_56_45_66_6d_74_20_10_00_00_00_01_00_01_00'; // WAVE_fmt _ and constant from header  
 
 
     function reverse(uint32 input) internal pure returns (uint32 v) {
