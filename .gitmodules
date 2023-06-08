@@ -1,15 +1,18 @@
 [submodule "lib/forge-std"]
 	path = lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "lib/solidity-trigonometry"]
-	path = lib/solidity-trigonometry
-	url = https://github.com/mds1/solidity-trigonometry
-[submodule "lib/solmate"]
-	path = lib/solmate
-	url = https://github.com/Rari-capital/solmate
 [submodule "lib/num_complex_solidity"]
 	path = lib/num_complex_solidity
 	url = https://github.com/partylikeits1983/num_complex_solidity
 [submodule "lib/abdk-libraries-solidity"]
 	path = lib/abdk-libraries-solidity
 	url = https://github.com/abdk-consulting/abdk-libraries-solidity
+[submodule "lib/solmate"]
+	path = lib/solmate
+	url = https://github.com/transmissions11/solmate
+[submodule "lib/solidity-trigonometry"]
+	path = lib/solidity-trigonometry
+	url = https://github.com/mds1/solidity-trigonometry
+[submodule "lib/solady"]
+	path = lib/solady
+	url = https://github.com/Vectorized/solady
