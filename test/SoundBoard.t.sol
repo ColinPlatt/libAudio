@@ -17,7 +17,7 @@ contract SoundBoardTest is Test {
     function _writeAsSite(string memory _filename, string memory _data) internal {
 
         string memory site = string.concat(
-            '<!DOCTYPE html><html><head><meta charset="utf-8"><title>WAV</title></head><body><audio controls><source src="',
+            '<!DOCTYPE html><html><head><meta charset="utf-8"><title>WAV</title></head><body><audio controls loop><source src="',
             _data,
             '" type="audio/wav"></audio></body></html>'
         );
@@ -28,7 +28,7 @@ contract SoundBoardTest is Test {
 
     function testTranceBeat() public  {
         // should return 5 seconds of play
-        _writeAsSite("tranceBeat", soundBoard.tranceBeat(8_000 * 60).encodeWAV(8_000));
+        _writeAsSite("tranceBeat", soundBoard.tranceBeat(80_000, 8_000 * 20).encodeWAV(8_000));
     }
 
 
